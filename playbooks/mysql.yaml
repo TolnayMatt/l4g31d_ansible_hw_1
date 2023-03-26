@@ -1,0 +1,14 @@
+---
+- name: Change MySQL Port
+  hosts: db
+  become: true
+
+  roles:
+    - mysql_config
+
+  handlers:
+    - name: restart mysql
+      service:
+        name: mysql
+        state: restarted
+        enabled: true

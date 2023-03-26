@@ -1,0 +1,12 @@
+---
+- name: Ensure Apache is installed
+  package:
+    name: apache2
+    state: present
+
+- name: Change Apache port to 18111
+  lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: '^Listen'
+    line: 'Listen 18111'
+  notify: restart apache

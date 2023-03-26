@@ -1,2 +1,27 @@
 ---
 # tasks file for mysql
+
+- name: Install MySQL client package
+  yum:
+    name: mysql
+    state: present
+  
+- name: Stop MySQL service
+  systemd:
+    name: mysqld
+    state: stopped
+  
+- name: Update MySQL configuration file
+  lineinfile:
+    path: /etc/my.cnf
+    regexp: '^port='
+    line: 'port={{ mysql_port }}'
+    state: present
+  
+- name: Start MySQL service
+  systemd:
+    name: mysqld
+    state: started
+  
+- notify: restart mysql
+

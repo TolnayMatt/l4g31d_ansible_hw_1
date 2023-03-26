@@ -1,2 +1,13 @@
 ---
 # tasks file for apache
+- name: Ensure Apache is installed
+  package:
+    name: httpd
+    state: present
+
+- name: Change Apache port to 18111
+  lineinfile:
+    path: /etc/httpd/conf.d/*.conf
+    regexp: '^Listen'
+    line: 'Listen 18111'
+  notify: restart httpd

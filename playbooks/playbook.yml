@@ -19,4 +19,11 @@
   hosts: hostname
   become: true
   roles: 
-    - hostname  
+    - hostname
+
+- name: Set MySQL to binary logging
+
+  hosts: db
+  become: true
+  roles:
+    - mysqlbinlog  

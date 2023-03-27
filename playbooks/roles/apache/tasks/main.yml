@@ -5,9 +5,15 @@
     name: httpd
     state: present
 
+- name: do permit traffic in default zone on port 18111/tcp
+  ansible.posix.firewalld:
+    port: "{{ apache_port }}/tcp"
+    permanent: true
+    state: enabled
+
 - name: Change Apache port to 18111
   lineinfile:
-    path: /etc/httpd/conf.d/*.conf
+    path: /etc/httpd/conf/httpd.conf
     regexp: '^Listen'
     line: 'Listen 18111'
   notify: restart httpd

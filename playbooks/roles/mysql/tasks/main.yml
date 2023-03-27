@@ -3,8 +3,14 @@
 
 - name: Install MySQL client package
   yum:
-    name: mysql
+    name: mysql-server
     state: present
+
+- name: do permit traffic in default zone on port {{ mysql_port }}/tcp
+  ansible.posix.firewalld:
+    port: "{{mysql_port}}/tcp"
+    permanent: true
+    state: enabled
   
 - name: Stop MySQL service
   systemd:
@@ -22,6 +28,5 @@
   systemd:
     name: mysqld
     state: started
-  
-- notify: restart mysql
+  notify: restart mysql
 

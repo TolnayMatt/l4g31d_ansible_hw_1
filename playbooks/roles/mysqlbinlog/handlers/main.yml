@@ -1,0 +1,7 @@
+---
+# handlers file for mysqlbinlog
+- name: restart mysql
+  service:
+    name: mysqld
+    state: restarted
+    enabled: true

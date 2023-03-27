@@ -1,0 +1,16 @@
+---
+- name: Change Apache port to 18111
+  hosts: web
+  become: true
+  user: root
+
+  roles:
+    - apache
+    
+- name: Change MySQL Port
+  hosts: db
+  become: true
+
+  roles:
+    - mysql
+    

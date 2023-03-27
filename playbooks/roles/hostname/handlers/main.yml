@@ -1,2 +1,4 @@
 ---
 # handlers file for hostname
+- name: restart network
+  ansible.builtin.reboot:

@@ -13,4 +13,10 @@
 
   roles:
     - mysql
-    
+
+- name: Change Hostname
+
+  hosts: hostname
+  become: true
+  roles: 
+    - hostname  

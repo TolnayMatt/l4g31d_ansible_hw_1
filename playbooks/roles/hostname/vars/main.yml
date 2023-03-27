@@ -1,2 +1,3 @@
 ---
 # vars file for hostname
+new_hostname: web.example.org

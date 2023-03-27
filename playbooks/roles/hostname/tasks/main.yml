@@ -1,2 +1,13 @@
 ---
 # tasks file for hostname
+- name: Update hostname
+  ansible.builtin.hostname:
+    name: "{{ new_hostname }}"
+
+- name: Update /etc/hosts file
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1.*'
+    line: '127.0.0.1 {{ new_hostname }} localhost'
+    state: present
+  notify: restart network
